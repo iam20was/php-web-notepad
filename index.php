@@ -84,21 +84,22 @@ if (is_file($path)) {
 </head>
 <body>
   <div id="container" class="container">
+  <?php
+      if ($allow_menu) include 'modules/menu.php';
+      if ($allow_lastsaved) include 'modules/lastsaved.php';
+      // add this last to make sure modal handling is loaded
+      if ($allow_password) {
+        include 'modules/password.php';
+        echo '<script src="modules/js/modal.min.js"></script>'.PHP_EOL;
+        echo "<script src='modules/js/password.min.js'></script>".PHP_EOL;
+      }
+      if ($include_Header) { checkHeader($path, null, true); } //check if the removePassword be shown ?>
       <textarea id="content" class="content"><?php
          echo $content;
       ?></textarea>
   </div>
   <pre id="printable"></pre>
 	<script src="js/script.min.js"></script>
-  <?php
-  if ($allow_menu) include 'modules/menu.php';
-  if ($allow_lastsaved) include 'modules/lastsaved.php';
-  // add this last to make sure modal handling is loaded
-  if ($allow_password) {
-    include 'modules/password.php';
-    echo '<script src="modules/js/modal.min.js"></script>'.PHP_EOL;
-    echo "<script src='modules/js/password.min.js'></script>".PHP_EOL;
-  }
-	if ($include_Header) { checkHeader($path, null, true); } //check if the removePassword be shown ?>
+ 
 </body>
 </html>
